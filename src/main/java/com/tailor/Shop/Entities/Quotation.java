@@ -12,28 +12,21 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "users")
+@Table(name = "quotations")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class Quotation {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String password;
-    private String role;
+    private double price;
+    private String description;
 
     @OneToOne
-    @JoinColumn(name = "addressId")
-    private Address address;
+    @JoinColumn(name = "userId")
+    private User user;
 
-    @OneToOne
-    @JoinColumn(name = "jobId")
+    @OneToOne(mappedBy = "quotation")
     private Job job;
-
-    @OneToOne(mappedBy = "user")
-    private Quotation quotation;
 }
