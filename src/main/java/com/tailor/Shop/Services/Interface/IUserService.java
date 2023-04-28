@@ -8,7 +8,7 @@ public interface IUserService {
     // CRUD
     UserDto create(UserDto userDto);
 
-    UserDto update(UserDto userDto, Integer userId);
+    UserDto update(UserDto userDto, Integer userId, Integer addressId);
 
     void delete(Integer userId);
 

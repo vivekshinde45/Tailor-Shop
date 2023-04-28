@@ -9,6 +9,7 @@ import com.tailor.Shop.Payload.AddressDto;
 public class AddressMapping {
     public Address dtoToAddress(AddressDto addressDto) {
         Address address = new Address();
+        address.setId(addressDto.getId());
         address.setStreet(addressDto.getStreet());
         address.setArea(addressDto.getArea());
         address.setCity(addressDto.getCity());

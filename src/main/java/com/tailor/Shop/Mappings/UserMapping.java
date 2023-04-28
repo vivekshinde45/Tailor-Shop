@@ -1,5 +1,6 @@
 package com.tailor.Shop.Mappings;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.tailor.Shop.Entities.User;
@@ -7,6 +8,10 @@ import com.tailor.Shop.Payload.UserDto;
 
 @Component
 public class UserMapping {
+
+    @Autowired
+    private AddressMapping _addressMapping;
+
     public User dtoToUser(UserDto userDto) {
         User user = new User();
         user.setFirstName(userDto.getFirstName());
@@ -14,6 +19,7 @@ public class UserMapping {
         user.setEmail(userDto.getEmail());
         user.setPassword(userDto.getPassword());
         user.setRole(userDto.getRole());
+        user.setAddress(this._addressMapping.dtoToAddress(userDto.getAddressDto()));
         return user;
     }
 
@@ -25,6 +31,7 @@ public class UserMapping {
         userDto.setEmail(user.getEmail());
         userDto.setPassword(user.getPassword());
         userDto.setRole(user.getRole());
+        userDto.setAddressDto(this._addressMapping.addressToDto(user.getAddress()));
         return userDto;
     }
 }
