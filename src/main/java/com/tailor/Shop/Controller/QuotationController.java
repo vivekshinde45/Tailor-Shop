@@ -22,10 +22,11 @@ public class QuotationController {
     private QuotationService _quotationService;
 
     // CRUD
-    @PostMapping("/user/{userId}")
+    @PostMapping("/user/{userId}/job/{jobId}")
     public ResponseEntity<QuotationDto> create(@RequestBody QuotationDto quotationDto,
-            @PathVariable Integer userId) {
-        QuotationDto quotation = this._quotationService.create(quotationDto, userId);
+            @PathVariable Integer userId,
+            @PathVariable Integer jobId) {
+        QuotationDto quotation = this._quotationService.create(quotationDto, userId, jobId);
         return new ResponseEntity<QuotationDto>(quotation, HttpStatus.CREATED);
     }
 

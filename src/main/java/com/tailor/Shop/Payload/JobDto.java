@@ -1,5 +1,7 @@
 package com.tailor.Shop.Payload;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,6 +14,7 @@ public class JobDto {
     private String imgname;
     private String description;
     private boolean isActive;
-    private CategoryDto category;
-    private QuotationDto quotation;
+    private String budget;
+    private UserDto user;
+    private List<QuotationDto> quotations;
 }

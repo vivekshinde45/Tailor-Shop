@@ -31,8 +31,7 @@ public class User {
     @JoinColumn(name = "addressId")
     private Address address;
 
-    @OneToOne
-    @JoinColumn(name = "jobId")
+    @OneToOne(mappedBy = "user")
     private Job job;
 
     @OneToOne(mappedBy = "user")

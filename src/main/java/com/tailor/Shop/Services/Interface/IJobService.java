@@ -6,7 +6,7 @@ import com.tailor.Shop.Payload.JobDto;
 
 public interface IJobService {
     // CRUD
-    JobDto create(JobDto jobDto);
+    JobDto create(JobDto jobDto, Integer userId, String categoryName);
 
     JobDto update(JobDto jobDto, Integer jobId);
 

@@ -3,11 +3,13 @@ package com.tailor.Shop.Services.Implementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.tailor.Shop.Entities.Job;
 import com.tailor.Shop.Entities.Quotation;
 import com.tailor.Shop.Entities.User;
 import com.tailor.Shop.Exceptions.ResourceNotFoundException;
 import com.tailor.Shop.Mappings.QuotationMapping;
 import com.tailor.Shop.Payload.QuotationDto;
+import com.tailor.Shop.Repositories.JobRepository;
 import com.tailor.Shop.Repositories.QuotationRepository;
 import com.tailor.Shop.Repositories.UserRepository;
 import com.tailor.Shop.Services.Interface.IQuotationService;
@@ -23,15 +25,25 @@ public class QuotationService implements IQuotationService {
     @Autowired
     private UserRepository _userRepository;
 
+    @Autowired
+    private JobRepository _jobRepository;
+
     @Override
-    public QuotationDto create(QuotationDto quotationDto, Integer userId) {
+    public QuotationDto create(QuotationDto quotationDto, Integer userId, Integer jobId) {
         User user = this._userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException(
                         "User",
                         "User Id",
                         userId + ""));
+        Job job = this._jobRepository.findById(jobId)
+                .orElseThrow(
+                        () -> new ResourceNotFoundException(
+                                "Job",
+                                "Id",
+                                jobId + ""));
         Quotation quotation = this._quotationMapping.dtoToQuotation(quotationDto);
         quotation.setUser(user);
+        quotation.setJob(job);
         Quotation savedQuotation = this._quotationRepository.save(quotation);
         return this._quotationMapping.quotationToDto(savedQuotation);
     }
