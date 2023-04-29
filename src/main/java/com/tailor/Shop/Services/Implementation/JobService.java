@@ -83,14 +83,22 @@ public class JobService implements IJobService {
 
     @Override
     public void delete(Integer jobId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        Job job = this._jobRepository.findById(jobId).orElseThrow(
+                () -> new ResourceNotFoundException(
+                        "Job",
+                        "Id",
+                        jobId + ""));
+        this._jobRepository.delete(job);
     }
 
     @Override
     public JobDto getById(Integer jobId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getById'");
+        Job job = this._jobRepository.findById(jobId).orElseThrow(
+                () -> new ResourceNotFoundException(
+                        "Job",
+                        "Id",
+                        jobId + ""));
+        return this._jobMapping.jobToDto(job);
     }
 
     @Override
