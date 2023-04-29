@@ -9,6 +9,7 @@ import com.tailor.Shop.Payload.QuotationDto;
 public class QuotationMapping {
     public Quotation dtoToQuotation(QuotationDto quotationDto) {
         Quotation quotation = new Quotation();
+        quotation.setId(quotationDto.getId());
         quotation.setPrice(quotationDto.getPrice());
         quotation.setDescription(quotationDto.getDescription());
         return quotation;
