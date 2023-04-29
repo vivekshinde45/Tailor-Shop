@@ -108,4 +108,11 @@ public class JobService implements IJobService {
         return jobs;
     }
 
+    @Override
+    public List<JobDto> getAllByUser(Integer userId) {
+        List<JobDto> jobsByUser = this._jobRepository.findAllByUserId(userId).stream().map(
+                job -> this._jobMapping.jobToDto(job)).collect(Collectors.toList());
+        return jobsByUser;
+    }
+
 }

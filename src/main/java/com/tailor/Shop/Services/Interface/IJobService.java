@@ -15,4 +15,6 @@ public interface IJobService {
     JobDto getById(Integer jobId);
 
     List<JobDto> getAll();
+
+    List<JobDto> getAllByUser(Integer userId);
 }

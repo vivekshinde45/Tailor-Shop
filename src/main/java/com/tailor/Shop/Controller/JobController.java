@@ -54,4 +54,10 @@ public class JobController {
         List<JobDto> jobs = this._jobService.getAll();
         return ResponseEntity.ok(jobs);
     }
+
+    @GetMapping("/user/{jobId}")
+    public ResponseEntity<List<JobDto>> getAllByUser(@PathVariable Integer jobId) {
+        List<JobDto> jobs = this._jobService.getAllByUser(jobId);
+        return ResponseEntity.ok(jobs);
+    }
 }
