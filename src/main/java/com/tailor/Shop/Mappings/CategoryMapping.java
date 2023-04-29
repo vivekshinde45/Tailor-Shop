@@ -9,6 +9,7 @@ import com.tailor.Shop.Payload.CategoryDto;
 public class CategoryMapping {
     public Category dtoTCategory(CategoryDto categoryDto) {
         Category category = new Category();
+        category.setId(categoryDto.getId());
         category.setName(categoryDto.getName());
         category.setDescription(categoryDto.getDescription());
         return category;

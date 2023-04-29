@@ -37,7 +37,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public UserDto update(UserDto userDto, Integer userId, Integer addressId) {
+    public UserDto update(UserDto userDto, Integer userId) {
         User user = this._userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException(
                         "User",
