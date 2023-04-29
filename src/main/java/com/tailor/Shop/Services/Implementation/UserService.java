@@ -12,7 +12,6 @@ import com.tailor.Shop.Exceptions.ResourceNotFoundException;
 import com.tailor.Shop.Mappings.AddressMapping;
 import com.tailor.Shop.Mappings.UserMapping;
 import com.tailor.Shop.Payload.UserDto;
-import com.tailor.Shop.Repositories.AddressRepository;
 import com.tailor.Shop.Repositories.UserRepository;
 import com.tailor.Shop.Services.Interface.IUserService;
 
@@ -24,8 +23,8 @@ public class UserService implements IUserService {
     @Autowired
     private UserMapping _userMapping;
 
-    @Autowired
-    private AddressRepository _addressRepository;
+    // @Autowired
+    // private AddressRepository _addressRepository;
 
     @Autowired
     private AddressMapping _addressMapping;
@@ -34,7 +33,6 @@ public class UserService implements IUserService {
     public UserDto create(UserDto userDto) {
         User user = this._userMapping.dtoToUser(userDto);
         User savedUser = this._userRepository.save(user);
-        this._addressRepository.save(user.getAddress());
         return this._userMapping.userToDto(savedUser);
     }
 
@@ -46,16 +44,12 @@ public class UserService implements IUserService {
                         "User Id",
                         userId + ""));
 
-        Address address = this._addressRepository.findById(addressId)
-                .orElseThrow(() -> new ResourceNotFoundException(
-                        "Address",
-                        "address Id",
-                        addressId + ""));
-
+        Address address = user.getAddress();
+        userDto.getAddressDto().setId(address.getId());
         address = this._addressMapping.dtoToAddress(userDto.getAddressDto());
         user.setAddress(address);
         user = this._userRepository.save(user);
-        this._addressRepository.save(address);
+        // this._addressRepository.save(address);
         return this._userMapping.userToDto(user);
     }
 
@@ -66,7 +60,7 @@ public class UserService implements IUserService {
                         "User",
                         "User Id",
                         userId + ""));
-        this._addressRepository.delete(user.getAddress());
+        // this._addressRepository.delete(user.getAddress());
         this._userRepository.delete(user);
     }
 
