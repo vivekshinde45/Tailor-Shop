@@ -14,5 +14,5 @@ public class UserDto {
     private String email;
     private String password;
     private String role;
-    private AddressDto addressDto;
+    private AddressDto address;
 }

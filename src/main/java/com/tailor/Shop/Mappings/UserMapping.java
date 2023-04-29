@@ -19,7 +19,7 @@ public class UserMapping {
         user.setEmail(userDto.getEmail());
         user.setPassword(userDto.getPassword());
         user.setRole(userDto.getRole());
-        user.setAddress(this._addressMapping.dtoToAddress(userDto.getAddressDto()));
+        user.setAddress(this._addressMapping.dtoToAddress(userDto.getAddress()));
         return user;
     }
 
@@ -31,7 +31,7 @@ public class UserMapping {
         userDto.setEmail(user.getEmail());
         userDto.setPassword(user.getPassword());
         userDto.setRole(user.getRole());
-        userDto.setAddressDto(this._addressMapping.addressToDto(user.getAddress()));
+        userDto.setAddress(this._addressMapping.addressToDto(user.getAddress()));
         return userDto;
     }
 }

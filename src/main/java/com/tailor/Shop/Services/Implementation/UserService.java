@@ -45,8 +45,8 @@ public class UserService implements IUserService {
                         userId + ""));
 
         Address address = user.getAddress();
-        userDto.getAddressDto().setId(address.getId());
-        address = this._addressMapping.dtoToAddress(userDto.getAddressDto());
+        userDto.getAddress().setId(address.getId());
+        address = this._addressMapping.dtoToAddress(userDto.getAddress());
         user.setAddress(address);
         user = this._userRepository.save(user);
         // this._addressRepository.save(address);

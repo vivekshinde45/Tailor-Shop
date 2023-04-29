@@ -12,4 +12,6 @@ public class JobDto {
     private String imgname;
     private String description;
     private boolean isActive;
+    private CategoryDto category;
+    private QuotationDto quotation;
 }
