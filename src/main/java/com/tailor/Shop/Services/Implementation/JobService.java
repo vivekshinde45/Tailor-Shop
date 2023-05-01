@@ -115,4 +115,18 @@ public class JobService implements IJobService {
         return jobsByUser;
     }
 
+    @Override
+    public List<JobDto> getAllByDescription(String description) {
+        List<JobDto> jobsByName = this._jobRepository.findAllByDescription(description).stream().map(
+                job -> this._jobMapping.jobToDto(job)).collect(Collectors.toList());
+        return jobsByName;
+    }
+
+    @Override
+    public List<JobDto> getJobsByLocation(String city) {
+        List<JobDto> jobsByLocation = this._jobRepository.findJobsByCity(city).stream().map(
+                job -> this._jobMapping.jobToDto(job)).collect(Collectors.toList());
+        return jobsByLocation;
+    }
+
 }

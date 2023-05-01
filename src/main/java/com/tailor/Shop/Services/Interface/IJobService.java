@@ -17,4 +17,8 @@ public interface IJobService {
     List<JobDto> getAll();
 
     List<JobDto> getAllByUser(Integer userId);
+
+    List<JobDto> getAllByDescription(String description);
+
+    List<JobDto> getJobsByLocation(String city);
 }
